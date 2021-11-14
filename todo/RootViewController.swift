@@ -1,7 +1,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDataSource
+class RootViewController: UIViewController, UITableViewDataSource
 {
     
     @IBOutlet var tableView:UITableView!

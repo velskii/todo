@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  todo
+//  MAPD714-F2021-Week8
 //
-//  Created by Jerry on 2021-11-13.
+//  Created by Tom Tsiliopoulos on 2021-11-04.
 //
 
 import UIKit

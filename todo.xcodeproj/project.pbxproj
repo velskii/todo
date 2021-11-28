@@ -11,6 +11,11 @@
 		C4367A9327409D6D0003B155 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4367A9227409D6D0003B155 /* CustomTableViewCell.swift */; };
 		C4367A9527409DF10003B155 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4367A9427409DF10003B155 /* DetailViewController.swift */; };
 		C4367A972740A0B10003B155 /* RootController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4367A962740A0B10003B155 /* RootController.swift */; };
+		C442C3CF2752F02400C8E619 /* btnTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C442C3CE2752F02400C8E619 /* btnTableViewCell.swift */; };
+		C442C3D12753152100C8E619 /* TodoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C442C3D02753152100C8E619 /* TodoModel.swift */; };
+		C46BFC932753FE2C00006105 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C46BFC922753FE2C00006105 /* GoogleService-Info.plist */; };
+		C46BFC962754098700006105 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = C46BFC952754098700006105 /* SQLite */; };
+		C46BFC98275409BA00006105 /* Db.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46BFC97275409BA00006105 /* Db.swift */; };
 		C4A8851C2740006500F67AF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8851B2740006500F67AF4 /* AppDelegate.swift */; };
 		C4A8851E2740006600F67AF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A8851D2740006600F67AF4 /* SceneDelegate.swift */; };
 		C4A885232740006600F67AF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4A885212740006600F67AF4 /* Main.storyboard */; };
@@ -23,6 +28,10 @@
 		C4367A9227409D6D0003B155 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C4367A9427409DF10003B155 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C4367A962740A0B10003B155 /* RootController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootController.swift; sourceTree = "<group>"; };
+		C442C3CE2752F02400C8E619 /* btnTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = btnTableViewCell.swift; sourceTree = "<group>"; };
+		C442C3D02753152100C8E619 /* TodoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoModel.swift; sourceTree = "<group>"; };
+		C46BFC922753FE2C00006105 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C46BFC97275409BA00006105 /* Db.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Db.swift; sourceTree = "<group>"; };
 		C4A885182740006500F67AF4 /* todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4A8851B2740006500F67AF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4A8851D2740006600F67AF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46BFC962754098700006105 /* SQLite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				C4367A8E27409C310003B155 /* Todo.swift */,
+				C442C3D02753152100C8E619 /* TodoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -77,9 +88,12 @@
 				C4367A9427409DF10003B155 /* DetailViewController.swift */,
 				C4367A962740A0B10003B155 /* RootController.swift */,
 				C4A885212740006600F67AF4 /* Main.storyboard */,
+				C46BFC922753FE2C00006105 /* GoogleService-Info.plist */,
 				C4A885242740006900F67AF4 /* Assets.xcassets */,
 				C4A885262740006900F67AF4 /* LaunchScreen.storyboard */,
 				C4A885292740006900F67AF4 /* Info.plist */,
+				C442C3CE2752F02400C8E619 /* btnTableViewCell.swift */,
+				C46BFC97275409BA00006105 /* Db.swift */,
 			);
 			path = todo;
 			sourceTree = "<group>";
@@ -100,6 +114,9 @@
 			dependencies = (
 			);
 			name = todo;
+			packageProductDependencies = (
+				C46BFC952754098700006105 /* SQLite */,
+			);
 			productName = todo;
 			productReference = C4A885182740006500F67AF4 /* todo.app */;
 			productType = "com.apple.product-type.application";
@@ -128,6 +145,9 @@
 				Base,
 			);
 			mainGroup = C4A8850F2740006500F67AF4;
+			packageReferences = (
+				C46BFC942754098700006105 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
+			);
 			productRefGroup = C4A885192740006500F67AF4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -143,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4A885282740006900F67AF4 /* LaunchScreen.storyboard in Resources */,
+				C46BFC932753FE2C00006105 /* GoogleService-Info.plist in Resources */,
 				C4A885252740006900F67AF4 /* Assets.xcassets in Resources */,
 				C4A885232740006600F67AF4 /* Main.storyboard in Resources */,
 			);
@@ -155,6 +176,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C442C3CF2752F02400C8E619 /* btnTableViewCell.swift in Sources */,
+				C442C3D12753152100C8E619 /* TodoModel.swift in Sources */,
+				C46BFC98275409BA00006105 /* Db.swift in Sources */,
 				C4367A9327409D6D0003B155 /* CustomTableViewCell.swift in Sources */,
 				C4A8851C2740006500F67AF4 /* AppDelegate.swift in Sources */,
 				C4A8851E2740006600F67AF4 /* SceneDelegate.swift in Sources */,
@@ -378,6 +402,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C46BFC942754098700006105 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C46BFC952754098700006105 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C46BFC942754098700006105 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4A885102740006500F67AF4 /* Project object */;
 }

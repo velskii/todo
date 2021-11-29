@@ -85,15 +85,15 @@
 				C4A8851B2740006500F67AF4 /* AppDelegate.swift */,
 				C4A8851D2740006600F67AF4 /* SceneDelegate.swift */,
 				C4367A9227409D6D0003B155 /* CustomTableViewCell.swift */,
+				C442C3CE2752F02400C8E619 /* btnTableViewCell.swift */,
 				C4367A9427409DF10003B155 /* DetailViewController.swift */,
 				C4367A962740A0B10003B155 /* RootController.swift */,
+				C46BFC97275409BA00006105 /* Db.swift */,
 				C4A885212740006600F67AF4 /* Main.storyboard */,
 				C46BFC922753FE2C00006105 /* GoogleService-Info.plist */,
 				C4A885242740006900F67AF4 /* Assets.xcassets */,
 				C4A885262740006900F67AF4 /* LaunchScreen.storyboard */,
 				C4A885292740006900F67AF4 /* Info.plist */,
-				C442C3CE2752F02400C8E619 /* btnTableViewCell.swift */,
-				C46BFC97275409BA00006105 /* Db.swift */,
 			);
 			path = todo;
 			sourceTree = "<group>";

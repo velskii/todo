@@ -1,11 +1,10 @@
-
 /**
  * Assignment 5
- * File Name:    RootController.swift
- * Author:         FeiliangZhou
- * Student ID:   301216989
- * Version:        1.0
- * Date Created:   November 13  2021
+ * File Name:       RootController.swift
+ * Author:          FeiliangZhou
+ * Student ID:      301216989
+ * Version:         2.0
+ * Date Created:    November 28  2021
  */
 import UIKit
 import SQLite

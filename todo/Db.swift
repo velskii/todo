@@ -1,10 +1,12 @@
-//
-//  Db.swift
-//  todo
-//
-//  Created by Jerry on 2021-11-28.
-//
 
+/**
+ * Assignment 5
+ * File Name:       RootController.swift
+ * Author:          FeiliangZhou
+ * Student ID:      301216989
+ * Version:         2.0
+ * Date Created:    November 28  2021
+ */
 import Foundation
 import SQLite
 

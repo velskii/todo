@@ -1,11 +1,11 @@
 
 /**
- * Assignment 4
- * File Name:    DetailViewController.swift
- * Author:         FeiliangZhou
- * Student ID:   301216989
- * Version:        1.0
- * Date Created:   November 13  2021
+ * Assignment 5
+ * File Name:       DetailViewController.swift
+ * Author:          FeiliangZhou
+ * Student ID:      301216989
+ * Version:         2.0
+ * Date Created:    November 28  2021
  */
 
 import UIKit
@@ -134,10 +134,6 @@ class DetailViewController: UIViewController {
             self.todoDueDate.isHidden = false
         }
         
-        
-        
-        
-        // Do any additional setup after loading the view.
     }
     
 

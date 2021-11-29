@@ -1,11 +1,11 @@
 
 /**
- * Assignment 4
- * File Name:    CustomViewController.swift
- * Author:         FeiliangZhou
- * Student ID:   301216989
- * Version:        1.0
- * Date Created:   November 13  2021
+ * Assignment 5
+ * File Name:       RootController.swift
+ * Author:          FeiliangZhou
+ * Student ID:      301216989
+ * Version:         2.0
+ * Date Created:    November 28  2021
  */
 import UIKit
 import Foundation
@@ -66,7 +66,7 @@ class CustomTableViewCell: UITableViewCell
         // name
         let nameRect = CGRect(
             x: 20,
-            y: 0,
+            y: 10,
             width: 200,
             height: self.height
         )
@@ -77,7 +77,7 @@ class CustomTableViewCell: UITableViewCell
         // state
         let stateRect = CGRect(
             x: 30,
-            y: 16,
+            y: 36,
             width: 200,
             height: self.height
         )
@@ -88,7 +88,7 @@ class CustomTableViewCell: UITableViewCell
         //switch
         switchUI = UISwitch(frame: CGRect(
             x: 250,
-            y: 5,
+            y: 25,
             width: 30,
             height: self.height
         ))
@@ -99,7 +99,7 @@ class CustomTableViewCell: UITableViewCell
         //edit button
         let editButton = UIButton(frame: CGRect(
             x: 320,
-            y: 5,
+            y: 25,
             width: 80,
             height: self.height
         ))

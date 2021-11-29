@@ -38,6 +38,7 @@ class RootController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        todos = Db().selectData()
         tableView.reloadData()
     }
 
@@ -75,7 +76,8 @@ class RootController: UITableViewController {
 
             if editingStyle == .delete {
 
-                // remove the item from the data model
+                Db().deleteDate( rowid: todos[indexPath.row].id )
+                
                 todos.remove(at: indexPath.row)
 
                 // delete the table view row
@@ -101,19 +103,24 @@ class RootController: UITableViewController {
         let rowData = todos[indexPath.row]
         cell.name = rowData.name
        
-        if (rowData.state == "completed")
+        if (rowData.isCompleted == true)
         {
             cell.state = "completed"
-        }
-        if (rowData.hasDueDate)
-        {
-            if (rowData.dueDate.timeIntervalSinceReferenceDate < Date().timeIntervalSinceReferenceDate)
+            cell.stateLabel.text = "completed"
+            cell.nameLabel.textColor = UIColor.gray
+            cell.stateLabel.textColor = UIColor.gray
+        } else {
+            if (rowData.hasDueDate)
             {
-                cell.state = "Overdue!"
-            } else {
-                cell.state = rowData.dueDate.formatted()
+                if (rowData.dueDate.timeIntervalSinceReferenceDate < Date().timeIntervalSinceReferenceDate)
+                {
+                    cell.state = "Overdue!"
+                } else {
+                    cell.state = rowData.dueDate.formatted()
+                }
             }
         }
+        
         
         cell.editButton.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
         cell.editButton.tag = indexPath.row
@@ -130,7 +137,10 @@ class RootController: UITableViewController {
     
     @objc func pressButton(_ sender: UIButton) {
         if let vc = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
+        
+            vc.todoId = todos[sender.tag].id
             navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     
@@ -160,19 +170,14 @@ class RootController: UITableViewController {
                 hasDueDateV: true,
                 dueDateV: Date().addingTimeInterval(24*60*60)
             )
-            self.todos.append(
-                Todo(name: name!,
-                     hasDueDate: true,
-                     dueDate: Date().addingTimeInterval(24*60*60),
-                     state: "InProgress"
-                    )
-            )
+            self.todos = db.selectData()
             self.tableView.reloadData()
 
         }))
         present(alert, animated: false)
     }
-          
+    
+
 
    
 

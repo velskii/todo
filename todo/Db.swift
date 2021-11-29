@@ -64,6 +64,38 @@ class Db
             print(error)
         }
     }
+    
+    func getById(rowid: Int64) -> [Todo]{
+        
+        do {
+            let db = try Connection(path)
+            var newItems: [Todo] = []
+            for item in try db.prepare(tableResource) {
+                
+                if (item[id] == rowid) {
+                    
+                    newItems.append(
+                        Todo(
+                            id: item[id],
+                            name: item[name]!,
+                            isCompleted: item[isCompleted],
+                            notes: item[notes],
+                            hasDueDate: item[hasDueDate],
+                            dueDate: item[dueDate],
+                            state: "in progress"
+                        )
+                    )
+                    return newItems
+                }
+            }
+        } catch {
+            print(error)
+        }
+//        let item = tableResource.filter(id == rowid)
+        return []
+        
+    }
+    
     func selectData() -> [Todo]{
         do {
             let db = try Connection(path)
@@ -74,7 +106,9 @@ class Db
                 print("id: \(item[id]), name: \(item[name]), isCompleted: \(item[isCompleted]), notes: \(item[notes]), hasDueDate: \(item[hasDueDate]), dueDate: \(item[dueDate]) ")
                 newItems.append(
                     Todo(
+                        id: item[id],
                         name: item[name]!,
+                        isCompleted: item[isCompleted],
                         hasDueDate: true,
                         dueDate: item[dueDate],
                         state: "in progress"
@@ -89,6 +123,39 @@ class Db
         }
         
         return []
+    }
+    
+    func updateDate(rowid: Int64, nameV: String, isCompletedV: Bool, notesV: String, hasDueDateV: Bool, dueDateV: Date)
+    {
+        do {
+            let db = try Connection(path)
+            let item = tableResource.filter(id == rowid)
+
+            try db.run(
+                item.update(
+                    name <- nameV,
+                    isCompleted <- isCompletedV,
+                    notes <- notesV,
+                    hasDueDate <- hasDueDateV,
+                    dueDate <- dueDateV
+                )
+            )
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    func deleteDate(rowid: Int64) {
+        do {
+            print("delete id:\(rowid)")
+            let db = try Connection(path)
+            let item = tableResource.filter(id == rowid)
+            try db.run(item.delete())
+            
+        } catch {
+            print(error)
+        }
     }
     
     

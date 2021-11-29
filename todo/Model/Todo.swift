@@ -2,14 +2,41 @@ import Foundation
 
 class Todo
 {
-    private var m_id: String
+    private var m_id: Int64
     private var m_name: String
     private var m_notes: String
     private var m_hasDueDate: Bool
     private var m_dueDate: Date
     private var m_state: String
+    private var m_isCompleted: Bool
     
     // public properties
+    
+    public var id: Int64
+    {
+        get
+        {
+            return m_id
+        }
+        
+        set(newId)
+        {
+            m_id = newId
+        }
+    }
+    
+    public var isCompleted: Bool
+    {
+        get
+        {
+            return m_isCompleted
+        }
+        
+        set(newIsCompleted)
+        {
+            m_isCompleted = newIsCompleted
+        }
+    }
     public var name: String
     {
         get
@@ -74,15 +101,16 @@ class Todo
     
     
     // initializer (constructor)
-    init(name: String, notes:String = "", hasDueDate:Bool = false, dueDate:Date = Date(), state:String = "")
+    init(id: Int64, name: String, isCompleted: Bool, notes:String = "", hasDueDate:Bool = false, dueDate:Date = Date(), state:String = "")
     {
         m_name = name
         m_notes = notes
         m_hasDueDate = hasDueDate
         m_dueDate = dueDate
         // generate random id based on date hashValue
-        m_id = "\(abs(m_dueDate.hashValue))"
+        m_id = id
         m_state = state
+        m_isCompleted = isCompleted
     }
     
     // Utility methods

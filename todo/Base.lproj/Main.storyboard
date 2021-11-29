@@ -27,7 +27,7 @@
         <!--Todo-->
         <scene sceneID="q1H-2X-UDv">
             <objects>
-                <tableViewController id="axq-A4-Ult" customClass="RootController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RootController" id="axq-A4-Ult" customClass="RootController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Jsp-3x-7Q6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -119,6 +119,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6re-P7-4rx">
                                 <rect key="frame" x="331" y="313" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="hasSwitch:" destination="LPv-zz-yE0" eventType="valueChanged" id="HlV-b9-EmH"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="is completed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwI-Rb-b4z">
                                 <rect key="frame" x="21" y="539" width="201" height="74"/>
@@ -136,18 +139,27 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Update"/>
+                                <connections>
+                                    <action selector="updateBtn:" destination="LPv-zz-yE0" eventType="touchUpInside" id="ELp-kW-Q5U"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1k-Hn-RqI">
                                 <rect key="frame" x="161" y="790" width="91" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Delete"/>
+                                <connections>
+                                    <action selector="deleteBtn:" destination="LPv-zz-yE0" eventType="touchUpInside" id="VWG-GS-aqf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hht-yS-CF9">
                                 <rect key="frame" x="291" y="790" width="87" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="cancel"/>
+                                <connections>
+                                    <action selector="cancelBtn:" destination="LPv-zz-yE0" eventType="touchUpInside" id="ypi-fN-hBG"/>
+                                </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="1Lb-1h-iom">
                                 <rect key="frame" x="-1" y="352" width="414" height="162"/>
@@ -158,6 +170,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="38u-Cz-ARr"/>
+                    <connections>
+                        <outlet property="hasDueDateSwitch" destination="6re-P7-4rx" id="FSk-Ce-3sm"/>
+                        <outlet property="isCompletedSwitch" destination="t7b-5s-MQL" id="QoB-r6-17J"/>
+                        <outlet property="todoDueDate" destination="1Lb-1h-iom" id="vkH-d1-v4b"/>
+                        <outlet property="todoName" destination="GrK-Gv-Xh5" id="Bie-UK-8NT"/>
+                        <outlet property="todoNotes" destination="OX7-rs-cbQ" id="eUy-3l-nY1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tfF-gB-6N2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

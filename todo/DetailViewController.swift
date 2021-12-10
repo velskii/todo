@@ -50,11 +50,9 @@ class DetailViewController: UIViewController {
                     notesV: notesV,
                     hasDueDateV: hasDueDateV,
                     dueDateV: dueDateV )
-                if let vc = self.storyboard?.instantiateViewController(identifier: "RootController") as? RootController
-                {
                     self.navigationController?.popViewController(animated: true)
 
-                }
+                
             }))
             present(alert, animated: false)
             

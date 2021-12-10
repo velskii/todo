@@ -4,8 +4,8 @@
  * File Name:       DetailViewController.swift
  * Author:          FeiliangZhou
  * Student ID:      301216989
- * Version:         2.0
- * Date Created:    November 28  2021
+ * Version:         3.0
+ * Date Created:    December 10  2021
  */
 
 import UIKit

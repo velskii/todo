@@ -3,31 +3,20 @@
  * File Name:       RootController.swift
  * Author:          FeiliangZhou
  * Student ID:      301216989
- * Version:         2.0
- * Date Created:    November 28  2021
+ * Version:         3.0
+ * Date Created:    December 10  2021
  */
 import UIKit
 import SQLite
 
 class RootController: UITableViewController {
     
-    var todos:[Todo] = []
-//    var todos =
-//    [
-//        Todo(name: "First Todo", hasDueDate: true, dueDate: Date().addingTimeInterval(24*60*60*3), state: "in progress"),
-//         Todo(name: "Second Todo", hasDueDate: true, dueDate: Date().addingTimeInterval(-24*60*60*2), state: ""),
-//         Todo(name: "Third Todo", hasDueDate: true, dueDate: Date().addingTimeInterval(-5000), state: ""),
-//         Todo(name: "Fourth Todo", hasDueDate: false, state: "completed"),
-//    ]
+    var todos:[Todo] = Db().selectData()
     
     let tableIdentifier = "todosTable"
     let cellSpacingHeight: CGFloat = 5
     
     override func viewDidLoad() {
-        let list = Db().selectData()
-        todos = list
-        
-        
         super.viewDidLoad()
 
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: tableIdentifier)
@@ -37,8 +26,6 @@ class RootController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todos = Db().selectData()
-        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -69,24 +56,56 @@ class RootController: UITableViewController {
         return cellSpacingHeight
     }
     
-    
-    // this method handles row deletion
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-
-            if editingStyle == .delete {
-
-                Db().deleteDate( rowid: todos[indexPath.row].id )
-                
-                todos.remove(at: indexPath.row)
-
-                // delete the table view row
-                tableView.deleteRows(at: [indexPath], with: .fade)
-                self.tableView.reloadData()
-
-            } else if editingStyle == .insert {
+    override func tableView(_ tableView: UITableView,
+                   leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let closeAction = UIContextualAction(style: .normal, title:  "Detail", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            
+            if let vc = self.storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
+            
+                vc.todoId = self.todos[indexPath.row].id
+                self.navigationController?.pushViewController(vc, animated: true)
                 
             }
-        }
+            success(true)
+        })
+        closeAction.backgroundColor = .systemBlue
+        
+        return UISwipeActionsConfiguration(actions: [closeAction])
+    }
+
+    override func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let newState: String = (self.todos[indexPath.row].state == "Completed") ? "InProgress" : "Completed"
+        let titleForCell = (newState == "Completed") ? "Complete" : "InProgress"
+        let modifyAction = UIContextualAction(style: .normal, title: titleForCell, handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            self.todos[indexPath.row].state = newState
+            Db().updateState(
+                rowid: self.todos[indexPath.row].id,
+                isCompletedV: newState == "Completed" ? true : false
+            )
+            
+            tableView.reloadRows(at: [indexPath], with: .none)
+//            self.tableView.reloadData()
+            success(true)
+        })
+        
+        
+        
+        modifyAction.backgroundColor = .systemYellow
+        
+        let modifyAction2 = UIContextualAction(style: .normal, title: "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            Db().deleteDate( rowid: self.todos[indexPath.row].id )
+            self.todos.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
+            success(true)
+        })
+        modifyAction2.backgroundColor = .systemRed
+        
+        return UISwipeActionsConfiguration(actions: [modifyAction2, modifyAction])
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -101,28 +120,24 @@ class RootController: UITableViewController {
                
         let rowData = todos[indexPath.row]
         cell.name = rowData.name
-       
-        if (rowData.isCompleted == true)
+        cell.state = rowData.state
+        
+        if (rowData.hasDueDate)
         {
-            cell.state = "completed"
-            cell.stateLabel.text = "completed"
-            cell.nameLabel.textColor = UIColor.gray
-            cell.stateLabel.textColor = UIColor.gray
-        } else {
-            if (rowData.hasDueDate)
+            if (rowData.dueDate.timeIntervalSinceReferenceDate < Date().timeIntervalSinceReferenceDate)
             {
-                if (rowData.dueDate.timeIntervalSinceReferenceDate < Date().timeIntervalSinceReferenceDate)
-                {
-                    cell.state = "Overdue!"
-                } else {
-                    cell.state = rowData.dueDate.formatted()
-                }
+                cell.state = "Overdue!"
+            } else {
+                cell.state = rowData.dueDate.formatted()
             }
         }
-        
-        
-        cell.editButton.addTarget(self, action: #selector(pressButton), for: .touchUpInside)
-        cell.editButton.tag = indexPath.row
+        if ( rowData.state == "Completed" )
+        {
+            cell.state = "Completed"
+            cell.nameLabel.textColor = UIColor.gray
+            cell.stateLabel.textColor = UIColor.gray
+        }
+    
         
         // add border and color
         cell.backgroundColor = UIColor.white
@@ -132,15 +147,6 @@ class RootController: UITableViewController {
         cell.clipsToBounds = true
                 
         return cell
-    }
-    
-    @objc func pressButton(_ sender: UIButton) {
-        if let vc = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController {
-        
-            vc.todoId = todos[sender.tag].id
-            navigationController?.pushViewController(vc, animated: true)
-            
-        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

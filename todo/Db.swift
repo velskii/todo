@@ -148,6 +148,24 @@ class Db
         
     }
     
+    func updateState(rowid: Int64, isCompletedV: Bool)
+    {
+        do {
+            let db = try Connection(path)
+            let item = tableResource.filter(id == rowid)
+
+            try db.run(
+                item.update(
+                    isCompleted <- isCompletedV
+                )
+            )
+        } catch {
+            print(error)
+        }
+        
+    }
+    
+    
     func deleteDate(rowid: Int64) {
         do {
             print("delete id:\(rowid)")

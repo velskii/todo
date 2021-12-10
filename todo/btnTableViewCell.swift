@@ -27,8 +27,8 @@ class btnTableViewCell: UITableViewCell {
         
         // name
         let nameRect = CGRect(
-            x: 20,
-            y: 0,
+            x: 170,
+            y: 10,
             width: 200,
             height: 60
         )

@@ -4,8 +4,8 @@
  * File Name:       RootController.swift
  * Author:          FeiliangZhou
  * Student ID:      301216989
- * Version:         2.0
- * Date Created:    November 28  2021
+ * Version:         3.0
+ * Date Created:    December 10  2021
  */
 import UIKit
 import Foundation
@@ -31,30 +31,13 @@ class CustomTableViewCell: UITableViewCell
             if(state != oldValue)
             {
                 stateLabel.text = state
-                if (state == "completed")
-                {
-                    nameLabel.textColor = UIColor.gray
-                    stateLabel.textColor = UIColor.gray
-                    switchUI.isOn = false
-                    switchUI.isEnabled = false
-                }else {
-                    switchUI.isOn = true
-                }
-                if (state == "Overdue!")
-                {
-                    switchUI.isEnabled = false
-                    switchUI.isOn = false
-                    nameLabel.textColor = UIColor.red
-                    stateLabel.textColor = UIColor.red
-                }
-                
             }
         }
     }
     
     var nameLabel: UILabel!
     var stateLabel: UILabel!
-    var switchUI: UISwitch!
+    
     var height: Int = 30
     var titleFontSize: CGFloat = 25
     var stateFontSize: CGFloat = 15
@@ -85,51 +68,8 @@ class CustomTableViewCell: UITableViewCell
         stateLabel.textAlignment = NSTextAlignment.left
         stateLabel.font = UIFont.boldSystemFont(ofSize: self.stateFontSize)
         
-        //switch
-        switchUI = UISwitch(frame: CGRect(
-            x: 250,
-            y: 25,
-            width: 30,
-            height: self.height
-        ))
-        switchUI.isEnabled = true
-        switchUI.isOn = true
-        switchUI.addTarget(self, action: #selector(self.switchStateDidChange(_:)), for: .valueChanged)
-        
-        //edit button
-        let editButton = UIButton(frame: CGRect(
-            x: 320,
-            y: 25,
-            width: 80,
-            height: self.height
-        ))
-        let editImage = UIImage(systemName: "square.and.pencil")
-        editButton.setImage(editImage, for: UIControl.State.normal)
-        editButton.setTitleColor(.blue, for: .normal)
-        self.editButton = editButton
-        
-        
         contentView.addSubview(nameLabel)
         contentView.addSubview(stateLabel)
-        contentView.addSubview(switchUI)
-        contentView.addSubview(editButton)
-    }
-    
-    
-    @objc func switchStateDidChange(_ sender:UISwitch!)
-    {
-        if (sender.isOn == true){
-            print("UISwitch state is now ON")
-            stateLabel.text = state
-            nameLabel.textColor = UIColor.black
-            stateLabel.textColor = UIColor.black
-        }
-        else{
-            print("UISwitch state is now Off")
-            stateLabel.text = "completed"
-            nameLabel.textColor = UIColor.gray
-            stateLabel.textColor = UIColor.gray
-        }
     }
     
     required init?(coder: NSCoder) {
